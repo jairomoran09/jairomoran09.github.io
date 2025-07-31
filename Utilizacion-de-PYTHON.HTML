@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¿Cómo se utiliza Python?</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --python-blue: #305f8e;
+      --python-yellow: #ffcb05;
+      --background-dark: #141722;
+      --panel-bg: #1f2530;
+      --text-light: #dcdde1;
+      --text-muted: #7f8fa6;
+      --shadow-blue: rgba(48, 95, 142, 0.5);
+      --shadow-yellow: rgba(255, 203, 5, 0.6);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #0e121a 0%, #272e40 100%);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-light);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 50px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: var(--panel-bg);
+      max-width: 900px;
+      width: 100%;
+      border-radius: 20px;
+      padding: 50px 60px;
+      position: relative;
+      box-shadow:
+        0 0 20px 3px var(--shadow-blue),
+        inset 0 0 40px 5px #15203a;
+      overflow: hidden;
+      animation: appearUp 1.3s ease forwards;
+    }
+
+    .container::before,
+    .container::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.14;
+      filter: blur(70px);
+      z-index: 0;
+    }
+
+    .container::before {
+      width: 350px;
+      height: 350px;
+      background: var(--python-yellow);
+      top: -130px;
+      right: -130px;
+    }
+
+    .container::after {
+      width: 300px;
+      height: 300px;
+      background: var(--python-blue);
+      bottom: -140px;
+      left: -120px;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      background: linear-gradient(135deg, var(--python-blue), var(--python-yellow));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 10px var(--shadow-blue),
+        0 0 15px var(--shadow-yellow);
+    }
+
+    main h2 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: var(--python-yellow);
+      border-left: 10px solid var(--python-yellow);
+      padding-left: 22px;
+      margin-bottom: 35px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      filter: drop-shadow(0 0 8px var(--shadow-yellow));
+      user-select: none;
+    }
+
+    main p {
+      font-size: 1.18rem;
+      color: var(--text-light);
+      margin-bottom: 28px;
+      text-align: justify;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: rgba(255 255 255 / 0.05);
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+      cursor: default;
+    }
+
+    main p:hover {
+      background: rgba(255 203 5 / 0.2);
+      box-shadow: 0 0 20px var(--python-yellow);
+    }
+
+    main strong {
+      color: var(--python-yellow);
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.07em;
+      user-select: none;
+      padding-top: 18px;
+      border-top: 2px solid var(--python-yellow);
+      filter: drop-shadow(0 0 6px var(--shadow-yellow));
+    }
+
+    @keyframes appearUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 35px 30px;
+        border-radius: 14px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+        letter-spacing: 0.08em;
+      }
+
+      main h2 {
+        font-size: 1.7rem;
+        padding-left: 14px;
+        border-left-width: 7px;
+        margin-bottom: 25px;
+      }
+
+      main p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        padding: 10px 14px;
+      }
+
+      footer {
+        font-size: 0.9rem;
+        padding-top: 12px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="container" role="main" aria-label="Descripción de cómo se utiliza Python">
+    <header>
+      <h1>¿Cómo se utiliza Python?</h1>
+    </header>
+
+    <main>
+      <h2>Usos y aplicaciones del lenguaje</h2>
+
+      <p>Python es un lenguaje versátil que se utiliza en una amplia variedad de áreas, desde desarrollo web hasta inteligencia artificial. Su sintaxis clara y sencilla permite a los desarrolladores concentrarse más en resolver problemas que en la complejidad del código.</p>
+
+      <p>En el desarrollo web, Python se usa con frameworks como <strong>Django</strong> o <strong>Flask</strong> para crear aplicaciones robustas y seguras. Es ideal para construir desde sitios personales hasta plataformas empresariales.</p>
+
+      <p>En el ámbito científico y de análisis de datos, bibliotecas como <strong>Pandas</strong>, <strong>NumPy</strong> y <strong>Matplotlib</strong> permiten procesar grandes volúmenes de información, realizar estadísticas avanzadas y visualizar resultados de forma clara.</p>
+
+      <p>Python también es una herramienta clave en <strong>machine learning</strong> e <strong>inteligencia artificial</strong>. Bibliotecas como <strong>TensorFlow</strong> o <strong>scikit-learn</strong> permiten entrenar modelos que reconocen patrones, hacen predicciones y automatizan decisiones.</p>
+
+      <p>En automatización, Python permite crear scripts que ahorran tiempo realizando tareas repetitivas como mover archivos, procesar documentos o conectarse a APIs, todo con muy pocas líneas de código.</p>
+
+      <p>Además, Python es muy utilizado en el mundo de la educación, ya que es fácil de aprender. Muchos cursos introductorios de programación comienzan con Python por su simplicidad y poder expresivo.</p>
+
+      <p>En resumen, Python se utiliza para casi todo: desarrollo web, ciencia de datos, automatización, inteligencia artificial, videojuegos y más. Su comunidad activa y miles de bibliotecas disponibles lo convierten en uno de los lenguajes más poderosos y accesibles del mundo.</p>
+    </main>
+
+    <footer>
+      Página sobre el uso de Python | © 2025
+    </footer>
+  </div>
+</body>
+</html>

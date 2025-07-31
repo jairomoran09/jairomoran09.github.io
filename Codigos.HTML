@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>¿Cómo funciona Python?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+  :root {
+    --python-blue: #1e40af;
+    --python-yellow: #facc15;
+    --background-start: #0d1321;
+    --background-end: #1f2937;
+    --panel-bg: #111827;
+    --text-primary: #e0e7ff;
+    --text-secondary: #94a3b8;
+    --accent-shadow: rgba(250, 204, 21, 0.4);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px;
+    line-height: 1.7;
+  }
+
+  .container {
+    background-color: var(--panel-bg);
+    max-width: 900px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow:
+      0 10px 30px rgba(30, 64, 175, 0.6),
+      inset 0 0 30px rgba(250, 204, 21, 0.15);
+    padding: 50px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--python-yellow), var(--python-blue));
+    filter: drop-shadow(0 0 8px var(--accent-shadow));
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: linear-gradient(90deg, var(--python-blue), var(--python-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(250, 204, 21, 0.5);
+    margin-bottom: 15px;
+  }
+
+  main h2 {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 35px;
+    padding-left: 22px;
+    border-left: 10px solid var(--python-yellow);
+    letter-spacing: 0.1em;
+    user-select: none;
+    color: var(--python-yellow);
+    filter: drop-shadow(0 0 8px var(--accent-shadow));
+  }
+
+  main p {
+    font-size: 1.2rem;
+    margin-bottom: 28px;
+    color: var(--text-primary);
+    text-align: justify;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    padding: 12px 20px;
+    border-radius: 12px;
+  }
+
+  main p:hover {
+    background-color: rgba(250, 204, 21, 0.1);
+    box-shadow: 0 0 15px var(--python-yellow);
+  }
+
+  main strong {
+    color: var(--python-yellow);
+    font-weight: 700;
+  }
+
+  code {
+    display: block;
+    background-color: #1e293b;
+    color: #facc15;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-family: monospace;
+    white-space: pre-wrap;
+  }
+
+  footer {
+    margin-top: 70px;
+    padding-top: 20px;
+    border-top: 2px solid var(--python-yellow);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    user-select: none;
+    filter: drop-shadow(0 0 6px var(--accent-shadow));
+  }
+
+  @media (max-width: 720px) {
+    .container {
+      padding: 30px 25px;
+      border-radius: 16px;
+    }
+    header h1 {
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+    }
+    main h2 {
+      font-size: 1.6rem;
+      border-left-width: 6px;
+      padding-left: 14px;
+      margin-bottom: 25px;
+    }
+    main p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      padding: 10px 16px;
+    }
+    footer {
+      font-size: 0.9rem;
+      margin-top: 40px;
+      padding-top: 14px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container" role="main" aria-label="Ejemplos de Python">
+    <header>
+      <h1>🐍 ¿Qué se puede hacer en Python?</h1>
+    </header>
+
+    <main>
+      <h2>Ejemplos comunes de código en Python</h2>
+
+      <p><strong>1. Variables y tipos de datos:</strong></p>
+      <code>x = 10
+nombre = "Python"
+pi = 3.1416</code>
+
+      <p><strong>2. Condicionales:</strong></p>
+      <code>edad = 20
+if edad >= 18:
+    print("Eres mayor de edad")
+else:
+    print("Eres menor de edad")</code>
+
+      <p><strong>3. Bucles:</strong></p>
+      <code>for i in range(5):
+    print(i)</code>
+
+      <p><strong>4. Funciones:</strong></p>
+      <code>def saludar(nombre):
+    print(f"Hola {nombre}")
+
+saludar("Ana")</code>
+
+      <p><strong>5. Listas:</strong></p>
+      <code>frutas = ["manzana", "banana", "naranja"]
+print(frutas[0])</code>
+
+      <p><strong>6. Diccionarios:</strong></p>
+      <code>persona = {"nombre": "Luis", "edad": 30}
+print(persona["nombre"])</code>
+
+      <p><strong>7. Módulos:</strong></p>
+      <code>import math
+print(math.sqrt(16))</code>
+
+      <p><strong>8. Entrada del usuario:</strong></p>
+      <code>nombre = input("¿Cómo te llamas?")
+print("Hola", nombre)</code>
+
+      <p><strong>9. Manejo de errores:</strong></p>
+      <code>try:
+    numero = int(input("Ingresa un número: "))
+    print(100 / numero)
+except:
+    print("Hubo un error")</code>
+
+      <p>Estos son solo algunos ejemplos básicos del poder y simplicidad de Python. Aprenderlos te permitirá crear programas útiles, interactivos y cada vez más complejos.</p>
+    </main>
+
+    <footer>
+      Página Python | © 2025 Python
+    </footer>
+  </div>
+
+</body>
+</html>

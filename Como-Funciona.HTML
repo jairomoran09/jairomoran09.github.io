@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>¿Cómo funciona Python?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+  :root {
+    --python-blue: #306998;
+    --python-yellow: #FFD43B;
+    --background-dark: #121212;
+    --background-panel: #1e1e2f;
+    --text-light: #e0e0e0;
+    --text-muted: #a0a0b0;
+    --shadow-glow-blue: rgba(48, 105, 152, 0.7);
+    --shadow-glow-yellow: rgba(255, 212, 59, 0.7);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #0f121a 0%, #2a2a3a 100%);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    line-height: 1.65;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    background: var(--background-panel);
+    max-width: 900px;
+    width: 100%;
+    border-radius: 18px;
+    box-shadow:
+      0 0 15px 3px var(--shadow-glow-blue),
+      inset 0 0 40px 1px #16243f;
+    padding: 45px 55px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeSlideUp 1.2s ease forwards;
+  }
+
+  /* Decorative glowing circles */
+  .container::before,
+  .container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(60px);
+    z-index: 0;
+  }
+  .container::before {
+    width: 320px;
+    height: 320px;
+    background: var(--python-yellow);
+    top: -130px;
+    right: -100px;
+  }
+  .container::after {
+    width: 280px;
+    height: 280px;
+    background: var(--python-blue);
+    bottom: -120px;
+    left: -90px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 45px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    background: linear-gradient(135deg, var(--python-blue) 0%, var(--python-yellow) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px var(--shadow-glow-blue);
+    margin-bottom: 10px;
+  }
+
+  main h2 {
+    font-size: 2.2rem;
+    color: var(--python-yellow);
+    font-weight: 600;
+    border-left: 8px solid var(--python-yellow);
+    padding-left: 20px;
+    margin-bottom: 30px;
+    cursor: default;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    filter: drop-shadow(0 0 6px var(--shadow-glow-yellow));
+    user-select: none;
+  }
+
+  main p {
+    font-size: 1.15rem;
+    margin-bottom: 26px;
+    text-align: justify;
+    color: var(--text-light);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    padding: 8px 16px;
+  }
+  main p:hover {
+    background-color: rgba(255 212 59 / 0.15);
+    box-shadow: 0 0 15px var(--python-yellow);
+  }
+
+  main strong {
+    color: var(--python-yellow);
+    font-weight: 700;
+  }
+
+  footer {
+    margin-top: 60px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    user-select: none;
+    padding-top: 18px;
+    border-top: 2px solid var(--python-yellow);
+    filter: drop-shadow(0 0 6px var(--shadow-glow-yellow));
+  }
+
+  /* Animations */
+  @keyframes fadeSlideUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .container {
+      padding: 35px 25px;
+      border-radius: 14px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 0.07em;
+    }
+    main h2 {
+      font-size: 1.6rem;
+      padding-left: 14px;
+      border-left-width: 6px;
+    }
+    main p {
+      font-size: 1rem;
+    }
+    footer {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Descripción de cómo funciona Python">
+    <header>
+      <h1>🐍 ¿Cómo funciona Python?</h1>
+    </header>
+
+    <main>
+      <h2>Entendiendo cómo trabaja Python internamente</h2>
+
+      <p>Python funciona como un <strong>lenguaje interpretado</strong>, lo que significa que su código no necesita ser compilado antes de ejecutarse. En lugar de eso, el código fuente se lee y ejecuta línea por línea mediante un programa llamado <strong>intérprete</strong>.</p>
+
+      <p>Cuando escribes un programa en Python, el archivo que creas generalmente tiene una extensión <code>.py</code>. Este archivo es leído por el intérprete de Python, que traduce el código en instrucciones que la computadora puede entender y ejecutar.</p>
+
+      <p>El intérprete puede ser ejecutado desde la terminal o línea de comandos escribiendo <code>python nombre_del_archivo.py</code>. También puedes usar entornos interactivos como <strong>IDLE</strong>, <strong>Jupyter Notebook</strong> o editores como <strong>Visual Studio Code</strong>, que facilitan la escritura y prueba de código.</p>
+
+      <p>Internamente, Python convierte el código fuente en un formato intermedio llamado <strong>bytecode</strong>, que luego es interpretado por una máquina virtual llamada <strong>Python Virtual Machine (PVM)</strong>. Esto permite que Python sea multiplataforma y funcione igual en Windows, Linux o macOS.</p>
+
+      <p>Gracias a su modelo de ejecución, Python es muy flexible y fácil de probar. Puedes ejecutar código en partes, línea por línea, lo cual es ideal para aprender y para depurar errores rápidamente.</p>
+
+      <p>Además, Python tiene un sistema de <strong>bibliotecas</strong> muy amplio. Estas son colecciones de código ya escrito que permiten realizar tareas complejas con pocas líneas, como conectarse a bases de datos, procesar imágenes o crear interfaces gráficas.</p>
+
+      <p>En resumen, Python funciona de manera sencilla pero poderosa. Tú escribes el código en texto plano, el intérprete lo convierte en instrucciones, y la máquina virtual lo ejecuta paso a paso. Todo esto hace que Python sea fácil de usar, pero muy potente por dentro.</p>
+    </main>
+
+    <footer>
+      Página sobre el funcionamiento de Python | © 2025 Python
+    </footer>
+  </div>
+</body>
+</html>

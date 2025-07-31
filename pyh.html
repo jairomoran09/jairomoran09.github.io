@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sopa de Letras con Serpiente Animada</title>
+  <style>
+    /* Estilos base tuyo: (adaptados) */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #0a0f0d, #000);
+      font-family: 'Segoe UI', sans-serif;
+      color: #0f0;
+      text-align: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin: 20px 0;
+      font-size: 2.2rem;
+    }
+    .section {
+      margin: 40px auto;
+      max-width: 800px;
+      position: relative;
+      z-index: 1;
+    }
+    #word-list {
+      margin: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+    #grid-container {
+      display: inline-block;
+      padding: 10px;
+      border: 4px solid yellow;
+      box-shadow: 0 0 20px yellow;
+      margin-bottom: 20px;
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      grid-gap: 2px;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: 1px solid #ccc;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 40px;
+      user-select: none;
+      color: #000;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .selected {
+      background-color: #ffe082;
+      box-shadow: 0 0 10px #ffd54f;
+    }
+    .found {
+      background-color: #81c784;
+      color: white;
+      border-color: #81c784;
+    }
+    #message {
+      margin-top: 10px;
+      color: #0f0;
+      font-size: 18px;
+      min-height: 24px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0f0;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 30px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #6f6;
+    }
+
+    /* Overlay serpiente (oculto por defecto) */
+    #snake-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    #snake-overlay.active {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Contenedor serpiente */
+    .snake {
+      display: flex;
+      gap: 6px;
+      animation: slideSnake 4s linear infinite;
+      filter: drop-shadow(0 0 4px #306998);
+    }
+
+    /* Segmentos serpiente */
+    .segment {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 8px currentColor;
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    /* Alterna colores azul y amarillo Python */
+    .segment:nth-child(odd) {
+      background-color: #306998; /* azul Python */
+      color: #ffd43b;
+      animation-delay: 0s;
+    }
+    .segment:nth-child(even) {
+      background-color: #ffd43b; /* amarillo Python */
+      color: #306998;
+      animation-delay: 1s;
+    }
+
+    /* Movimiento lateral serpiente */
+    @keyframes slideSnake {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100vw); }
+    }
+
+    /* Brillo pulsante */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+      }
+      100% {
+        box-shadow: 0 0 12px currentColor, 0 0 24px currentColor;
+      }
+    }
+
+    /* Texto de felicitación */
+    #snake-message {
+      position: absolute;
+      top: 10%;
+      width: 100%;
+      color: #ffd43b;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 10px #306998;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* === ANIMACIÓN DE INTRO === */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle, #306998cc, #000000ee);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      color: #ffd43b;
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 20px;
+      opacity: 1;
+      animation: introFadeZoom 4s forwards;
+      user-select: none;
+    }
+
+    @keyframes introFadeZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      20%, 80% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.3);
+        pointer-events: none;
+        visibility: hidden;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animación intro -->
+  <div id="intro-overlay">
+    ¡Buena suerte encontrando las palabras! 🐍
+  </div>
+
+  <div class="section">
+    <h1> Sopa de Letras ^_^</h1>
+    <div id="word-list">Palabras: <span id="words">PYTHON, CLASS, LIST, DICT, LOOP, TUPLE, STRING, INPUT, IMPORT, OBJECT</span></div>
+
+    <div id="grid-container">
+      <div id="grid"></div>
+    </div>
+
+    <div id="message"></div>
+    <button onclick="location.reload()">🔁 Reiniciar</button>
+  </div>
+
+  <!-- Overlay serpiente -->
+  <div id="snake-overlay">
+    <div id="snake-message">🎉 ¡Has encontrado todas las palabras! 🐍</div>
+    <div class="snake" aria-hidden="true">
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+      <div class="segment"></div>
+    </div>
+  </div>
+
+ <script  src=".JS"></script>
+</body>
+</html>

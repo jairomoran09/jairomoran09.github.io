@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>¿Para qué sirve Python?</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+  :root {
+    --python-blue: #306998;
+    --python-yellow: #FFD43B;
+    --background-dark: #111827;
+    --background-light: #1f2937;
+    --text-light: #f9fafb;
+    --text-muted: #cbd5e1;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--background-dark);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 60px 20px;
+  }
+
+  .container {
+    background: var(--background-light);
+    max-width: 850px;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow:
+      0 10px 30px rgba(48, 105, 152, 0.6),
+      0 5px 15px rgba(255, 212, 59, 0.4);
+    overflow: hidden;
+    position: relative;
+    padding: 0 0 40px 0;
+    animation: fadeSlideIn 1s ease forwards;
+  }
+
+  /* Background abstract shapes */
+  .container::before,
+  .container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.12;
+    filter: blur(80px);
+    z-index: 0;
+  }
+  .container::before {
+    width: 300px;
+    height: 300px;
+    background: var(--python-blue);
+    top: -80px;
+    left: -80px;
+  }
+  .container::after {
+    width: 250px;
+    height: 250px;
+    background: var(--python-yellow);
+    bottom: -70px;
+    right: -70px;
+  }
+
+  header {
+    padding: 60px 40px 40px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Animated snake icon next to title */
+  header h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--python-blue) 0%, var(--python-yellow) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  header h1 .snake {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: relative;
+  }
+  header h1 .snake::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: var(--python-blue);
+    border-radius: 4px;
+    transform: translateY(-50%);
+    animation: snakeMove 2.5s linear infinite;
+    box-shadow:
+      18px 0 var(--python-yellow),
+      36px 0 var(--python-blue),
+      54px 0 var(--python-yellow);
+  }
+
+  @keyframes snakeMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 72px 0; }
+  }
+
+  header p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+
+  main {
+    padding: 40px 50px 60px 50px;
+    position: relative;
+    z-index: 1;
+  }
+
+  main h2 {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: var(--python-yellow);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-left: 6px solid var(--python-yellow);
+    padding-left: 18px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  /* Subrayado animado */
+  main h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 18px;
+    width: 0%;
+    height: 3px;
+    background: var(--python-yellow);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+  main h2:hover {
+    color: var(--python-blue);
+  }
+  main h2:hover::after {
+    width: 60px;
+  }
+
+  main p {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 26px;
+    color: var(--text-light);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  /* Resplandor leve al pasar mouse */
+  main p:hover {
+    box-shadow: 0 0 12px var(--python-yellow);
+    background-color: rgba(255 212 59 / 0.15);
+  }
+
+  main strong {
+    color: var(--python-yellow);
+  }
+
+  footer {
+    background: var(--background-dark);
+    text-align: center;
+    color: #6b7280;
+    padding: 20px;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    user-select: none;
+  }
+
+  /* Animations */
+  @keyframes fadeSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    body {
+      padding: 40px 15px;
+    }
+    .container {
+      border-radius: 14px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      gap: 8px;
+    }
+    main h2 {
+      font-size: 1.8rem;
+      padding-left: 14px;
+      border-left-width: 4px;
+    }
+    main p {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <h1>
+        🐍 ¿Para qué sirve Python?
+        <span class="snake" aria-hidden="true"></span>
+      </h1>
+      <p>Una mirada moderna a las aplicaciones y usos de este lenguaje versátil</p>
+    </header>
+
+    <main>
+      <h2>Descubre para qué sirve este lenguaje</h2>
+
+      <p>Python sirve para resolver una gran variedad de problemas en diferentes áreas de la tecnología. Su facilidad de uso, claridad y flexibilidad lo convierten en una herramienta poderosa para desarrolladores, científicos, ingenieros, educadores y muchas otras profesiones.</p>
+
+      <p>Una de sus principales utilidades es en la creación de <strong>programas y scripts</strong> que automatizan tareas tediosas. Esto es útil tanto para usuarios comunes como para empresas que necesitan ahorrar tiempo y recursos.</p>
+
+      <p>Python también sirve para <strong>desarrollar sitios web</strong> modernos y eficientes. Gracias a frameworks como Django o Flask, se pueden construir desde blogs personales hasta plataformas de comercio electrónico o redes sociales.</p>
+
+      <p>En el mundo de la <strong>ciencia de datos</strong>, Python es esencial. Permite analizar grandes volúmenes de datos, descubrir patrones y obtener conclusiones útiles para la toma de decisiones en empresas, gobiernos o laboratorios.</p>
+
+      <p>Otro uso destacado es en la <strong>inteligencia artificial</strong>. Python sirve para entrenar modelos que pueden reconocer rostros, traducir idiomas, recomendar productos o incluso conducir vehículos autónomos.</p>
+
+      <p>También es ampliamente utilizado en <strong>educación</strong>. Sirve como lenguaje de entrada para enseñar programación en escuelas y universidades, gracias a su sintaxis clara y su bajo nivel de complejidad.</p>
+
+      <p>Además, Python sirve para el <strong>desarrollo de videojuegos</strong>, crear interfaces gráficas, realizar cálculos científicos, simular sistemas complejos, procesar imágenes, controlar robots y mucho más.</p>
+
+      <p>En resumen, Python sirve para programar casi cualquier cosa: desde una simple calculadora hasta un sistema de inteligencia artificial. Es una herramienta versátil, poderosa y cada vez más necesaria en el mundo digital.</p>
+    </main>
+  </div>
+
+</body>
+</html>
